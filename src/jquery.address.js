@@ -66,6 +66,7 @@
             },
             _strict = function(value) {
                 value = value.toString();
+                value = _opts.encode ? encodeURI(value) : value;
                 return (_opts.strict && value.substr(0, 1) != '/' ? '/' : '') + value;
             },
             _crawl = function(value, direction) {
@@ -142,6 +143,13 @@
                     _url = null;
                 }
                 _value = _href();
+
+					 // if pushState is not supported, rewrite the URL onload in the workable hash format
+                //var hrefState = _hrefState();
+                //if(!_h.pushState && (hrefState != '/' && hrefState.replace(/^\/#/, '') != _hrefHash()))
+                //{
+                //    _l.replace(_opts.state.replace(/^\/$/, '') + '/#' + hrefState);
+                //}
             },
             _load = function() {
                 if (!_loaded) {
@@ -283,6 +291,7 @@
                 autoUpdate: TRUE, 
                 crawlable: FALSE,
                 history: TRUE, 
+					 encode: TRUE,
                 strict: TRUE,
                 wrap: FALSE
             },
