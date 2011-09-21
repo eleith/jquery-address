@@ -145,11 +145,11 @@
                 _value = _href();
 
 					 // if pushState is not supported, rewrite the URL onload in the workable hash format
-                //var hrefState = _hrefState();
-                //if(!_h.pushState && (hrefState != '/' && hrefState.replace(/^\/#/, '') != _hrefHash()))
-                //{
-                //    _l.replace(_opts.state.replace(/^\/$/, '') + '/#' + hrefState);
-                //}
+                var hrefState = _hrefState();
+                if(!_h.pushState && (hrefState != '/' && hrefState.replace(/^\/#/, '') != _hrefHash()))
+                {
+                    _l.replace(_opts.state.replace(/^\/$/, '') + '/#' + hrefState);
+                }
             },
             _load = function() {
                 if (!_loaded) {
