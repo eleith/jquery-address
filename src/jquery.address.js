@@ -146,7 +146,7 @@
 
 					 // if pushState is not supported, rewrite the URL onload in the workable hash format
                 var hrefState = _hrefState();
-                if(!_h.pushState && (hrefState != '/' && hrefState.replace(/^\/#/, '') != _hrefHash()))
+                if(!_h.pushState && (hrefState != '/' && hrefState.replace(/^\/#/, '') != _hrefHash()) && _opts.state)
                 {
                     _l.replace(_opts.state.replace(/^\/$/, '') + '/#' + hrefState);
                 }
