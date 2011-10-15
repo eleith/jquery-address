@@ -216,6 +216,7 @@
 
                     _st(function() {
                         _trigger('init');
+                        _initialized = TRUE;
                         _update(FALSE);
                     }, 1);
 
@@ -315,6 +316,7 @@
             _title = _d.title, 
             _silent = FALSE,
             _loaded = FALSE,
+            _initialized = FALSE,
             _justset = TRUE,
             _juststart = TRUE,
             _updating = FALSE,
@@ -361,7 +363,12 @@
                 return _bind.apply(this, [INIT].concat(_array(arguments)));
             },
             change: function(data, fn) {
-                return _bind.apply(this, [CHANGE].concat(_array(arguments)));
+                var c = _bind.apply(this, [CHANGE].concat(_array(arguments)));
+
+                if(_initialized)
+                   _trigger(CHANGE);
+
+                return c;
             },
             internalChange: function(data, fn) {
                 return _bind.apply(this, [INTERNAL_CHANGE].concat(_array(arguments)));
